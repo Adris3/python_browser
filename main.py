@@ -5,8 +5,9 @@ from PyQt5.QtWebEngineWidgets import *
 
 class MyWebBrowser(QMainWindow):
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         super(MyWebBrowser, self).__init__(*args, **kwargs)
 
-        
+        self.window = QWidget()
+        self.window.setWindowTitle("My Web Browser")
 

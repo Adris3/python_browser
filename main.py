@@ -37,3 +37,10 @@ class MyWebBrowser(QMainWindow):
         self.layout.addWidget(self.browser)
 
         self.browser.setUrl(QUrl("http://google.com"))
+
+        self.window.setLayout(self.layout)
+        self.window.show()
+
+app = QApplication([])
+window = MyWebBrowser()
+app.exec_()

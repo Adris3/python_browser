@@ -14,7 +14,7 @@ class MyWebBrowser(QMainWindow):
         self.layout = QVBoxLayout()
         self.horizontal = QHBoxLayout()
 
-        self.url_bar = QTextEdit()
+        self.url_bar = QLineEdit()
         self.url_bar.setMaximumHeight(30)
 
         self.go_btn = QPushButton("Go")
@@ -39,7 +39,8 @@ class MyWebBrowser(QMainWindow):
         self.browser.setUrl(QUrl("http://google.com"))
 
         # buttons
-        self.go_btn.clicked.connect(lambda: self.navigate(self.url_bar.toPlainText()))
+        self.go_btn.clicked.connect(lambda: self.navigate(self.url_bar.text()))
+        self.url_bar.returnPressed.connect(self.go_btn.click)
         self.back_btn.clicked.connect(self.browser.back)
         self.forward_btn.clicked.connect(self.browser.forward)
 

@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtWebEngineWidgets import *
+# from pyinput import Key, Listener
 
 class MyWebBrowser(QMainWindow):
 
@@ -46,9 +47,18 @@ class MyWebBrowser(QMainWindow):
         self.window.show()
 
     def navigate(self, url):
+        if not url.lower().endswith(".com"):
+            search_url = QUrl("https://www.google.com/search")
+            query = QUrlQuery()
+            query.addQueryItem("q", url)
+            search_url.setQuery(query)
+            self.browser.setUrl(search_url)
+            return
+
         if not url.startswith("http"):
             url = "http://" + url
             self.url_bar.setText(url)
+
         self.browser.setUrl(QUrl(url))
 
 app = QApplication([])
